@@ -1,4 +1,4 @@
-package test;
+package net.ddns.endercrypt.library.cards.test;
 
 import net.ddns.endercrypt.library.cards.Decks;
 import net.ddns.endercrypt.library.cards.entities.Card;
