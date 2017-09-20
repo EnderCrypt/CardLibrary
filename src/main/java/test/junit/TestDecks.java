@@ -1,4 +1,4 @@
-package net.ddns.endercrypt.library.cards.test.junit;
+package test.junit;
 
 import static org.junit.Assert.*;
 
