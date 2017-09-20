@@ -78,6 +78,17 @@ public class ElementPuller<T>
 		return stream().collect(Collectors.toList());
 	}
 
+	/* ITERATE */
+
+	/**
+	 * returns an iterator which allows iterating through all elements available
+	 * @return an iterator
+	 */
+	public Iterator<T> iterator()
+	{
+		return iterator;
+	}
+
 	/* STREAM */
 
 	/**

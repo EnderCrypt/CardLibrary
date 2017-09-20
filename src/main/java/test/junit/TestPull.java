@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -68,6 +69,19 @@ public class TestPull
 	public void pullListWorks()
 	{
 		assertEquals(sampleList, samplePuller.list());
+	}
+
+	@Test
+	public void pullIteratorWorks()
+	{
+		Iterator<String> iterator = samplePuller.iterator();
+		assertTrue(iterator.hasNext());
+		assertEquals("one", iterator.next());
+		assertTrue(iterator.hasNext());
+		assertEquals("two", iterator.next());
+		assertTrue(iterator.hasNext());
+		assertEquals("three", iterator.next());
+		assertFalse(iterator.hasNext());
 	}
 
 	@Test
