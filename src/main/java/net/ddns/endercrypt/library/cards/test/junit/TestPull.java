@@ -85,6 +85,30 @@ public class TestPull
 	}
 
 	@Test
+	public void pullIteratorWithLimitWorks()
+	{
+		Iterator<String> iterator = samplePuller.iterator(2);
+		assertTrue(iterator.hasNext());
+		assertEquals("one", iterator.next());
+		assertTrue(iterator.hasNext());
+		assertEquals("two", iterator.next());
+		assertFalse(iterator.hasNext());
+	}
+
+	@Test(expected = NoSuchElementException.class)
+	public void pullIteratorWithLimitThrowsException()
+	{
+		Iterator<String> iterator = samplePuller.iterator(2);
+		assertTrue(iterator.hasNext());
+		assertEquals("one", iterator.next());
+		assertTrue(iterator.hasNext());
+		assertEquals("two", iterator.next());
+		assertFalse(iterator.hasNext());
+
+		iterator.next(); // exception expected
+	}
+
+	@Test
 	public void pullStreamWorks()
 	{
 		List<String> newList = samplePuller.stream().collect(Collectors.toList());

@@ -80,6 +80,11 @@ public class ElementPuller<T>
 
 	/* ITERATE */
 
+	public Iterator<T> iterator(int count)
+	{
+		return stream(count).iterator();
+	}
+
 	/**
 	 * returns an iterator which allows iterating through all elements available
 	 * @return an iterator
