@@ -3,8 +3,10 @@ package net.ddns.endercrypt.library.cards.pull;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Spliterator;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -48,12 +50,44 @@ public class ElementPuller<T>
 	}
 
 	/**
+	 * returns an element if available, if not, returs the element supplied as argument
+	 * @param other
+	 * @return an element
+	 */
+	public T orElse(T element)
+	{
+		return optional().orElse(element);
+	}
+
+	/**
+	 * returns an element if available, if not, returs the element supplied from the supplier from the arguments
+	 * @param other
+	 * @return
+	 */
+	public T orElseGet(Supplier<T> elementSupplier)
+	{
+		Objects.requireNonNull(elementSupplier);
+		return orElse(elementSupplier)
+	}
+
+	/**
 	 * returns an element or throws a NoSuchElementException exception if no element is available
 	 * @return an instance
 	 */
 	public T demand()
 	{
-		return optional().orElseThrow(NoSuchElementException::new);
+		return demandOrElseThrow(NoSuchElementException::new);
+	}
+
+	/**
+	 * returns an element if available or throw the supplied exception
+	 * @param exceptionSupplier
+	 * @return <T> or
+	 * @throws the supplied exception
+	 */
+	public <X extends Throwable> T demandOrElseThrow(Supplier<? extends X> exceptionSupplier) throws X
+	{
+		return optional().orElseThrow(exceptionSupplier);
 	}
 
 	/* LIST */
