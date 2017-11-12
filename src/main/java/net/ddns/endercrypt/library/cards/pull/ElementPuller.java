@@ -67,7 +67,7 @@ public class ElementPuller<T>
 	public T orElseGet(Supplier<T> elementSupplier)
 	{
 		Objects.requireNonNull(elementSupplier);
-		return orElse(elementSupplier)
+		return optional().orElseGet(elementSupplier);
 	}
 
 	/**
